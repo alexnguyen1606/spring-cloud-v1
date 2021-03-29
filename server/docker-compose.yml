@@ -1,0 +1,19 @@
+version: '3'
+services:
+  naming-server:
+    image: spring-cloud/naming-server
+    container_name: naming-server
+    ports:
+      - "8761:8761"
+  limits-service:
+    image: spring-cloud/limits-service
+    container_name: limits-service
+    depends_on:
+      - config-server
+    ports:
+      - "8083:8083"
+  config-server:
+    image: spring-cloud/config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
